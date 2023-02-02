@@ -4,12 +4,11 @@ import chain.responsibility.aufgabe.Request;
 import chain.responsibility.aufgabe.Interface.IHandler;
 import chain.responsibility.aufgabe.Interface.IUserService;
 
-public class LoggedInHandler implements IHandler {
-
+public class IsVipHandler implements IHandler {
     IUserService userService;
     private IHandler next;
 
-    public LoggedInHandler(IUserService userService) {
+    public IsVipHandler(IUserService userService) {
         this.userService = userService;
     }
 
@@ -20,14 +19,15 @@ public class LoggedInHandler implements IHandler {
 
     @Override
     public void handleRequest(Request request) {
-        if (userService.checkUser(request.getEmail(), request.getPassword())) {
-            System.out.println("Nutzer ist registriert! 😄 -> go next!");
+        if (userService.checkVIP(request.getEmail(), request.getPassword())) {
+            System.out.println("Nutzer ist VIP! 😄");
 
             if (next != null) {
                 next.handleRequest(request);
             }
         } else {
-            System.out.println("User ist nicht registriert 😐");
+            System.out.println("User ist kein VIP");
         }
     }
+
 }

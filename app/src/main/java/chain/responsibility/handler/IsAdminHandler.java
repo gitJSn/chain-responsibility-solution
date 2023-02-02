@@ -2,20 +2,33 @@ package chain.responsibility.handler;
 
 import chain.responsibility.aufgabe.Request;
 import chain.responsibility.aufgabe.Interface.IHandler;
+import chain.responsibility.aufgabe.Interface.IUserService;
 
 public class IsAdminHandler implements IHandler {
 
+    private IUserService userService;
+    private IHandler next;
+
+    public IsAdminHandler(IUserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public void setNext(IHandler handler) {
-        // TODO Der Handler muss wissen wer der nächste in der Kette ist.
-        // Siehe Beispiel im Vortrag
+        this.next = handler;
     }
 
     @Override
     public void handleRequest(Request request) {
-        // TODO is nutzer admin? nutze das userRepository für die überprüfung
-        // true -> next.handleRequest(request);
-        // false -> Konsolenausgabe
+        if (userService.checkAdmin(request.getEmail(), request.getPassword())) {
+            System.out.println("Nutzer ist Admin! 😄 (Zeige z.b. Adminübersicht)");
+
+            if (next != null) {
+                next.handleRequest(request);
+            }
+        } else {
+            System.out.println("User ist nicht Admin 😐");
+        }
     }
 
 }
