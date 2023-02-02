@@ -1,4 +1,4 @@
-package chain.responsibility.handler;
+package chain.responsibility.aufgabe.handler;
 
 import chain.responsibility.aufgabe.Request;
 import chain.responsibility.aufgabe.Interface.IHandler;

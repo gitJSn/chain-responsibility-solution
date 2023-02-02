@@ -2,9 +2,9 @@ package chain.responsibility.aufgabe;
 
 import chain.responsibility.aufgabe.Interface.IHandler;
 import chain.responsibility.aufgabe.Interface.IUserService;
-import chain.responsibility.handler.IsAdminHandler;
-import chain.responsibility.handler.IsVipHandler;
-import chain.responsibility.handler.LoggedInHandler;
+import chain.responsibility.aufgabe.handler.IsAdminHandler;
+import chain.responsibility.aufgabe.handler.IsVipHandler;
+import chain.responsibility.aufgabe.handler.LoggedInHandler;
 
 public class App {
     public static void main(String[] args) {
